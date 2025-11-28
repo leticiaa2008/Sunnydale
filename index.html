@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Escola Sunnydale</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2c3e50;
+            line-height: 1.8;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        /* Header estilizado */
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 50px 30px;
+            text-align: center;
+            border-bottom: 5px solid #3498db;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            font-size: 18px;
+            font-style: italic;
+            color: #ecf0f1;
+            font-weight: 300;
+        }
+
+        /* Conteúdo principal */
+        main {
+            padding: 40px;
+        }
+
+        h2 {
+            color: #2c3e50;
+            font-weight: 700;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        /* Cores das seções - Mantendo a especificação de IDs */
+        #mission-statement {
+            color: #2c3e50;
+        }
+
+        #upcoming-events {
+            background-color: #fff9e6;
+            padding: 25px;
+            border-left: 5px solid #f39c12;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        #upcoming-events h2 {
+            color: #d68910;
+            margin-top: 0;
+        }
+
+        #contact {
+            background-color: #e8f4f8;
+            padding: 25px;
+            border-left: 5px solid #3498db;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        #contact h2 {
+            color: #2980b9;
+            margin-top: 0;
+        }
+
+        /* Eventos ao ar livre */
+        .outdoor {
+            background: linear-gradient(135deg, #a8e6cf 0%, #56ab91 100%);
+            padding: 12px 15px;
+            border-left: 4px solid #27ae60;
+            border-radius: 5px;
+            margin-bottom: 12px;
+            color: white;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(39, 174, 96, 0.2);
+        }
+
+        .outdoor:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+        }
+
+        /* Evento indoor */
+        li[data-event-type="indoor"] {
+            background: linear-gradient(135deg, #a8d8ea 0%, #5a8ca8 100%);
+            padding: 12px 15px;
+            border-left: 4px solid #3498db;
+            border-radius: 5px;
+            margin-bottom: 12px;
+            color: white;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.2);
+            list-style: none;
+        }
+
+        li[data-event-type="indoor"]:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Datas destacadas */
+        .date {
+            font-weight: bold;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 2px 8px;
+            border-radius: 3px;
+            display: inline-block;
+        }
+
+        /* Área de contato estilizada */
+        .section {
+            background-color: transparent;
+            padding: 0;
+            border-radius: 0;
+            margin-top: 0;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background-color: #e8eef7;
+            transform: translateX(5px);
+        }
+
+        .contact-label {
+            font-weight: 700;
+            color: #2980b9;
+            margin-right: 15px;
+            min-width: 80px;
+            font-size: 16px;
+        }
+
+        .contact-value {
+            cursor: pointer;
+            color: #34495e;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .contact-value:hover {
+            color: #3498db;
+        }
+
+        /* Listas melhoradas */
+        ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        p {
+            margin: 15px 0;
+            font-size: 16px;
+            line-height: 1.8;
+            color: #34495e;
+        }
+
+        /* Descrição geral */
+        .intro {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 5px solid #3498db;
+            font-size: 17px;
+            color: #2c3e50;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            margin-top: 40px;
+        }
+
+        /* Espaçamento melhorado */
+        h2 + p {
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Modal para descrição de eventos */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 90%;
+            animation: slideIn 0.3s ease;
+            position: relative;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-btn {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #7f8c8d;
+            transition: color 0.3s ease;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .close-btn:hover {
+            color: #e74c3c;
+        }
+
+        .modal-title {
+            font-size: 26px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            margin-top: 0;
+        }
+
+        .modal-description {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #34495e;
+            margin-bottom: 20px;
+        }
+
+        .modal-date {
+            font-size: 14px;
+            color: #7f8c8d;
+            font-weight: 600;
+            padding: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .modal-button {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Cursor pointer para eventos */
+        li[data-event-type] {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🏫 Escola Sunnydale</h1>
+            <p class="tagline">Cultivando futuros brilhantes através da educação de qualidade</p>
+        </header>
+
+        <!-- Conteúdo Principal -->
+        <main>
+            <p class="intro">
+                ✨ Bem-vindos à Escola Sunnydale, dedicada a cultivar o amor pelo aprendizado em cada aluno. 
+                Nossa comunidade escolar é um espaço de excelência, criatividade e crescimento pessoal.
+            </p>
+
+            <!-- Missão -->
+            <section>
+                <h2 id="mission-statement">🎯 Declaração de Missão</h2>
+                <p>Nossa missão é proporcionar uma educação de qualidade que prepare todas as crianças para um futuro de sucesso, desenvolvendo não apenas o conhecimento acadêmico, mas também valores fundamentais como respeito, responsabilidade e empatia.</p>
+            </section>
+
+            <!-- Eventos -->
+            <section id="upcoming-events">
+                <h2>📅 Próximos Eventos</h2>
+                <ul>
+                    <li data-event-type="indoor" data-event-id="science-fair" title="Clique para mais detalhes">
+                        🔬 Feira de Ciências -
+                        <span class="date">10 de junho</span>
+                    </li>
+
+                    <li class="outdoor" data-event-type="outdoor" data-event-id="art-expo" title="Clique para mais detalhes">
+                        🎨 Exposição de Arte -
+                        <span class="date">15 de junho</span>
+                    </li>
+
+                    <li class="outdoor" data-event-type="outdoor" data-event-id="sports-day" title="Clique para mais detalhes">
+                        ⚽ Dia de Esportes -
+                        <span class="date">20 de junho</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Contato -->
+            <section id="contact" class="section">
+                <h2>📞 Fale Conosco</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span class="contact-label">📧 E-mail:</span>
+                        <span class="contact-value" title="Clique para copiar o e-mail">info@sunnydaleschool.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">📱 Telefone:</span>
+                        <span class="contact-value" title="Clique para copiar o telefone">555-1234</span>
+                    </div>
+                </div>
+
+                <!-- Imagine que clicar aqui exibe a mensagem: "Obrigado por entrar em contato!" -->
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2025 Escola Sunnydale. Todos os direitos reservados. ❤️</p>
+        </footer>
+    </div>
+
+    <!-- Modal para descrição de eventos -->
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeEventModal()">&times;</button>
+            <h2 class="modal-title" id="modalTitle"></h2>
+            <div class="modal-date" id="modalDate"></div>
+            <p class="modal-description" id="modalDescription"></p>
+            <button class="modal-button" onclick="closeEventModal()">Fechar</button>
+        </div>
+    </div>
+
+    <script>
+        // Dados dos eventos com descrições
+        const eventData = {
+            'science-fair': {
+                title: '🔬 Feira de Ciências',
+                date: '10 de junho, 2025',
+                description: 'Uma oportunidade incrível para nossos alunos apresentarem seus projetos científicos inovadores! Os estudantes explorarão temas como física, química, biologia e tecnologia, com apresentações interativas e atividades práticas. Os visitantes poderão acompanhar demonstrações ao vivo e aprender sobre o mundo científico de forma divertida e educativa.'
+            },
+            'art-expo': {
+                title: '🎨 Exposição de Arte',
+                date: '15 de junho, 2025',
+                description: 'Celebre a criatividade e expressão artística dos alunos da Escola Sunnydale! Esta exposição apresentará obras de arte em várias formas: pinturas, desenhos, esculturas, colagens e instalações digitais. Será uma oportunidade para os pais, familiares e comunidade apreciarem o talento e a imaginação de nossos jovens artistas em um ambiente acolhedor e inspirador.'
+            },
+            'sports-day': {
+                title: '⚽ Dia de Esportes',
+                date: '20 de junho, 2025',
+                description: 'Um dia repleto de diversão, energia e competição saudável! O Dia de Esportes reúne alunos de todas as idades em competições de atletismo, futebol, vôlei, corrida de revezamento e muitas outras atividades. É uma excelente oportunidade para promover o trabalho em equipe, desenvolver habilidades motoras e criar memórias inesquecíveis enquanto celebramos a saúde e o bem-estar.'
+            }
+        };
+
+        // Adicionar listeners aos eventos
+        document.querySelectorAll('li[data-event-id]').forEach(event => {
+            event.addEventListener('click', function() {
+                const eventId = this.getAttribute('data-event-id');
+                openEventModal(eventId);
+            });
+        });
+
+        // Função para abrir modal
+        function openEventModal(eventId) {
+            const event = eventData[eventId];
+            if (event) {
+                document.getElementById('modalTitle').textContent = event.title;
+                document.getElementById('modalDate').textContent = event.date;
+                document.getElementById('modalDescription').textContent = event.description;
+                document.getElementById('eventModal').classList.add('show');
+            }
+        }
+
+        // Função para fechar modal
+        function closeEventModal() {
+            document.getElementById('eventModal').classList.remove('show');
+        }
+
+        // Fechar modal ao clicar fora dele
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('eventModal');
+            if (event.target === modal) {
+                closeEventModal();
+            }
+        });
+
+        // Fechar modal com tecla ESC
+        window.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeEventModal();
+            }
+        });
+    </script>
+
+</body>
+</html>
